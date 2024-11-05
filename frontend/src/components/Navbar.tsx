@@ -23,8 +23,18 @@ const Navbar = () => {
     <nav style={{
       display: "flex",
       justifyContent: "space-between",
-      outline: "1px solid blue",
+      outline: "1px solid red",
     }}>
+      <Link to="/"
+        style={{
+          // get rid of the underline
+          textDecoration: "none",
+          // make it bigger
+          fontSize: "1.5rem",
+        }}
+      >
+        🏠
+      </Link>
       <div style={{
         display: "flex",
       }}>
@@ -73,18 +83,16 @@ const Navbar = () => {
           </div>
         ))}
       </div>
-      <div>
-        <Link to="/cart"
-          style={{
-            // get rid of the underline
-            textDecoration: "none",
-            // make it bigger
-            fontSize: "1.5rem",
-          }}
-        >
-          🛒
-        </Link>
-      </div>
+      <Link to="/cart"
+        style={{
+          // get rid of the underline
+          textDecoration: "none",
+          // make it bigger
+          fontSize: "1.5rem",
+        }}
+      >
+        🛒
+      </Link>
     </nav>
   );
 };
