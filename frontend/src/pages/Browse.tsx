@@ -1,6 +1,7 @@
 import { items } from '../mockdatastore'
 import shirt from "../assets/shirtemoji.png"
 import { Link } from 'react-router-dom';
+import './index.css';
 
 const Browse = () => <div
     style={{
@@ -35,36 +36,25 @@ const Browse = () => <div
             width: "80%",
         }} >{
                 items.map((item) => (
-                    <>
-                        <style>
-                            {`
-                        .hover-enlarge {
-                            transition: transform 0.3s ease;
-                        }
-                        .hover-enlarge:hover {
-                            transform: scale(1.1);
-                        }
-                        `}
-                        </style>
-                        <Link key={item.name}
-                            to={`/item/${item.name}`}
-                            style={{
-                                outline: "1px solid blue",
-                                display: "flex",
-                                flexDirection: "column",
-                                textDecoration: "none",
-                            }}
-                            className='hover-enlarge' >
-                            <img src={shirt} alt="shirt picture" width={"100%"} />
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "space-evenly",
-                            }}>
-                                <p>${item.price}</p>
-                                <p>{item.name}</p>
-                            </div>
-                        </Link>
-                    </>
+                    <Link key={item.name}
+                        to={`/item/${item.name}`}
+                        style={{
+                            outline: "1px solid blue",
+                            display: "flex",
+                            flexDirection: "column",
+                            textDecoration: "none",
+                            backgroundColor: "white",
+                        }}
+                        className='hover-enlarge' >
+                        <img src={shirt} alt="shirt picture" width={"100%"} />
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "space-evenly",
+                        }}>
+                            <p>${item.price}</p>
+                            <p>{item.name}</p>
+                        </div>
+                    </Link>
                 ))}
         </div>
     </div>
