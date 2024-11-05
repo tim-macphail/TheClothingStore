@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
-import About from './pages/About';
 import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
+import Browse from './pages/Browse';
 
 
 const AppContent = () => {
@@ -14,8 +14,8 @@ const AppContent = () => {
       {showNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/*" element={<Browse />} />
       </Routes>
     </div>
   );
