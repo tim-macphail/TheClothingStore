@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
 
 const categories = [
   {
@@ -24,8 +23,11 @@ const Navbar = () => {
     <nav style={{
       display: "flex",
       justifyContent: "space-between",
+      outline: "1px solid blue",
     }}>
-      <div style={{ display: "flex" }}>
+      <div style={{
+        display: "flex",
+      }}>
         {categories.map((category, index) => (
           <div
             key={category.name}
@@ -41,6 +43,7 @@ const Navbar = () => {
               style={{
                 // fill the width of the parent
                 width: "100%",
+                height: "100%",
               }}
             >
               {category.name}
@@ -52,6 +55,7 @@ const Navbar = () => {
                   flexDirection: "column",
                   position: "absolute", // this will make the dropdown appear on top of the other elements
                   outline: "1px solid red",
+                  backgroundColor: "white",
                   width: "10rem",
                 }}>
                 {category.subcategories.map((subcategory) => (
@@ -70,8 +74,15 @@ const Navbar = () => {
         ))}
       </div>
       <div>
-        <Link to="/cart">
-          <ShoppingCart aria-hidden="true" />
+        <Link to="/cart"
+          style={{
+            // get rid of the underline
+            textDecoration: "none",
+            // make it bigger
+            fontSize: "1.5rem",
+          }}
+        >
+          🛒
         </Link>
       </div>
     </nav>
