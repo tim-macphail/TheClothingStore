@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
 import Browse from './pages/Browse';
+import Item from './pages/Item';
 
 
 const AppContent = () => {
@@ -15,6 +16,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/item/*" element={<Item />} />
         <Route path="/*" element={<Browse />} />
       </Routes>
     </div>

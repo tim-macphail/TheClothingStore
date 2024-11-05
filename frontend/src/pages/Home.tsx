@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => <div style={{
     display: "flex",
     flexDirection: "column",
@@ -5,10 +7,9 @@ const Home = () => <div style={{
     alignItems: "center",
     height: "90vh"
 }}>
-    <h1>THE CLOTHING STORE</h1>
+    <h1>THE CLOT👕HING STORE</h1>
     <div style={{
-        outline: "1px solid red",
-        padding: "0",
+        outline: "1px solid blue",
         display: "flex",
     }}>
         <textarea
@@ -19,7 +20,17 @@ const Home = () => <div style={{
             }}
             placeholder="SEARCH"
         ></textarea>
-        <button>🔎</button>
+        <Link to="/browse"
+            style={{
+                height: "100%",
+            }}
+        >
+            <button
+                style={{
+                    height: "100%",
+                }}
+            >🔎</button>
+        </Link>
     </div>
 </div>;
 export default Home;
