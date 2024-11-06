@@ -22,7 +22,7 @@
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone git@github.com:tim-macphail/TheClothingStore.git
 cd TheClothingStore
 ```
 
