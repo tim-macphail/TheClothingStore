@@ -10,6 +10,7 @@ const mockItems = [
         category: "t-shirt",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "pants",
@@ -19,6 +20,7 @@ const mockItems = [
         category: "pants",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     },
     {
         name: "shoes",
@@ -28,6 +30,7 @@ const mockItems = [
         category: "shoes",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "hat",
@@ -37,6 +40,7 @@ const mockItems = [
         category: "hat",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     },
     {
         name: "gloves",
@@ -46,6 +50,7 @@ const mockItems = [
         category: "gloves",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "scarf",
@@ -55,6 +60,7 @@ const mockItems = [
         category: "scarf",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     },
     {
         name: "belt",
@@ -64,6 +70,7 @@ const mockItems = [
         category: "belt",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "socks",
@@ -73,6 +80,7 @@ const mockItems = [
         category: "socks",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     },
     {
         name: "watch",
@@ -82,6 +90,7 @@ const mockItems = [
         category: "watch",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "bracelet",
@@ -91,6 +100,7 @@ const mockItems = [
         category: "bracelet",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     },
     {
         name: "necklace",
@@ -100,6 +110,7 @@ const mockItems = [
         category: "necklace",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "earrings",
@@ -109,6 +120,7 @@ const mockItems = [
         category: "earrings",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     },
     {
         name: "ring",
@@ -118,6 +130,7 @@ const mockItems = [
         category: "ring",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "sunglasses",
@@ -127,6 +140,7 @@ const mockItems = [
         category: "sunglasses",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "backpack",
@@ -136,6 +150,7 @@ const mockItems = [
         category: "backpack",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "purse",
@@ -145,6 +160,7 @@ const mockItems = [
         category: "purse",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/1.webp",
     },
     {
         name: "wallet",
@@ -154,6 +170,7 @@ const mockItems = [
         category: "wallet",
         size: "medium",
         color: "blue",
+        image_url: "http://localhost:8080/2.webp",
     }
 ];
 
@@ -166,7 +183,7 @@ const importData = async () => {
         await AppDataSource.query(`
             TRUNCATE TABLE order_items, cart, products CASCADE;
         `);
-        
+
         console.log("Cleared existing data");
 
         // Insert products
@@ -174,8 +191,8 @@ const importData = async () => {
             await AppDataSource.query(`
                 INSERT INTO products (name, description, price, stock_quantity, category, size, color, image_url, created_at, updated_at)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-            `, [item.name, item.description, item.price, item.stock_quantity, item.category, item.size, item.color, ""]);
-            
+            `, [item.name, item.description, item.price, item.stock_quantity, item.category, item.size, item.color, item.image_url]);
+
             console.log(`Added product: ${item.name}`);
         }
 

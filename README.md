@@ -69,7 +69,13 @@ cd frontend
 yarn dev
 ```
 
-3. Access the application:
+3. Start the mock cdn
+```bash
+cd cdn
+python -m http.server 8080
+```
+
+4. Access the application:
    - Frontend: http://localhost:5173
    - Backend API: http://localhost:3000
 
