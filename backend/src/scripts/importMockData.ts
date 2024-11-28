@@ -150,7 +150,7 @@ const mockItems = [
         category: "dressshirts",
         size: "medium",
         color: "white",
-        image_url: "http://localhost:8080/formalshirts/fshirt1.webp",
+        image_url: "http://localhost:8080/formal-shirts/fshirt1.webp",
     },
     {
         name: "Dress Shirt",
@@ -160,7 +160,7 @@ const mockItems = [
         category: "dressshirt",
         size: "medium",
         color: "black",
-        image_url: "http://localhost:8080/formalshirts/fshirt3.webp",
+        image_url: "http://localhost:8080/formal-shirts/fshirt3.webp",
     },
     {
         name: "Knit Sweater",
