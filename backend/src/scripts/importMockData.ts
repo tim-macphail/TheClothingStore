@@ -20,7 +20,7 @@ const mockItems = [
         category: "pants",
         size: "medium",
         color: "black",
-        image_url: "http://localhost:8080/pants/pants1.webp",
+        image_url: "http://localhost:8080/pants/pants.webp",
     },
     {
         name: "Running Shoes",
@@ -139,8 +139,8 @@ const mockItems = [
         stock_quantity: 50,
         category: "shirts",
         size: "small",
-        color: "red",
-        image_url: "http://localhost:8080/cshirts/shirt2.jpg",
+        color: "blue",
+        image_url: "http://localhost:8080/cshirts/shirt2.webp",
     },
     {
         name: "Dress Shirt",
