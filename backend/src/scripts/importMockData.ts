@@ -28,7 +28,7 @@ const mockItems = [
         price: 300,
         stock_quantity: 50,
         category: "running",
-        size: "medium",
+        size: "mediu",
         color: "black",
         image_url: "http://localhost:8080/running/runningshoes.png",
     },
