@@ -10,7 +10,7 @@ const mockItems = [
         category: "t-shirt",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/Basketball/basketballjersey.webp",
+        image_url: "http://localhost:8080/cshirts/shirt1.webp",
     },
     {
         name: "pants",
@@ -20,7 +20,7 @@ const mockItems = [
         category: "pants",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/Pants/pants1.webp",
+        image_url: "http://localhost:8080/pants/pants1.webp",
     },
     {
         name: "shoes",
@@ -30,7 +30,7 @@ const mockItems = [
         category: "shoes",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/Basketball/bballshoe.webp",
+        image_url: "http://localhost:8080/running/runningshoes.png",
     },
     {
         name: "hat",
@@ -40,7 +40,7 @@ const mockItems = [
         category: "hat",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/Skiing/skiinghelmet.jpg",
+        image_url: "http://localhost:8080/skiing/skiinghelmet.jpg",
     },
     {
         name: "gloves",
