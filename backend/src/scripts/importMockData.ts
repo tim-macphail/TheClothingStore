@@ -3,14 +3,14 @@ import { AppDataSource } from "../data-source";
 
 const mockItems = [
     {
-        name: "t-shirt",
+        name: "jersey",
         description: "Comfortable casual t-shirt",
         price: 100,
         stock_quantity: 50,
         category: "t-shirt",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/1.webp",
+        image_url: "http://localhost:8080/Basketball/basketballjersey.webp",
     },
     {
         name: "pants",
@@ -20,7 +20,7 @@ const mockItems = [
         category: "pants",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/2.webp",
+        image_url: "http://localhost:8080/Pants/pants1.webp",
     },
     {
         name: "shoes",
@@ -30,7 +30,7 @@ const mockItems = [
         category: "shoes",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/1.webp",
+        image_url: "http://localhost:8080/Basketball/bballshoe.webp",
     },
     {
         name: "hat",
@@ -40,7 +40,7 @@ const mockItems = [
         category: "hat",
         size: "medium",
         color: "blue",
-        image_url: "http://localhost:8080/2.webp",
+        image_url: "http://localhost:8080/Skiing/skiinghelmet.jpg",
     },
     {
         name: "gloves",
