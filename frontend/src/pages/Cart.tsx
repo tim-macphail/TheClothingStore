@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
   const mockCartItems = [
     {
       id: 1,
@@ -38,14 +41,67 @@ const Cart = () => {
           overflow: "hidden", // Prevent overflow if the emoji gets too large
         }}
       >
-        <span
-          style={{
-            fontSize: "calc(40vw)", // Dynamically fill the container
-            lineHeight: "1", // Prevent extra spacing
-          }}
-        >
-          🛒
-        </span>
+        {isCheckingOut ? (
+          <div>
+            <h2>Billing Info</h2>
+            <form>
+              <label>
+                Name:
+                <input type="text" name="name" />
+              </label>
+              <label>
+                Address:
+                <input type="text" name="address" />
+              </label>
+              <label>
+                City:
+                <input type="text" name="city" />
+              </label>
+              <label>
+                State:
+                <input type="text" name="state" />
+              </label>
+              <label>
+                ZIP:
+                <input type="text" name="zip" />
+              </label>
+            </form>
+
+            <h2>Shipping Info</h2>
+
+            <form>
+              <label>
+                Name:
+                <input type="text" name="name" />
+              </label>
+              <label>
+                Address:
+                <input type="text" name="address" />
+              </label>
+              <label>
+                City:
+                <input type="text" name="city" />
+              </label>
+              <label>
+                State:
+                <input type="text" name="state" />
+              </label>
+              <label>
+                ZIP:
+                <input type="text" name="zip" />
+              </label>
+            </form>
+          </div>
+        ) : (
+          <span
+            style={{
+              fontSize: "calc(40vw)", // Dynamically fill the container
+              lineHeight: "1", // Prevent extra spacing
+            }}
+          >
+            🛒
+          </span>
+        )}
       </div>
       <div
         style={{
@@ -68,11 +124,23 @@ const Cart = () => {
             justifyContent: "space-between",
           }}
         >
-          <button>
-            <Link to={"/"}>Cancel</Link>
+          <button
+            onClick={() => {
+              setIsCheckingOut((prev) => !prev);
+            }}
+          >
+            {isCheckingOut ? "Cancel" : <Link to={"/"}>Return to store</Link>}
           </button>
-          <button>
-            <Link to={"/checkout"}>Confirm</Link>
+          <button
+            onClick={() => {
+              if (isCheckingOut) {
+                alert("Order confirmed!");
+              } else {
+                setIsCheckingOut(true);
+              }
+            }}
+          >
+            {isCheckingOut ? "Confirm" : "Checkout"}
           </button>
         </div>
       </div>
