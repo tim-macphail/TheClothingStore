@@ -120,8 +120,8 @@ const Browse = () => {
               </li>
             </ul>
           </div>
-          {/* apply button */}
           <button>Apply</button>
+          <button>Reset</button>
         </div>
         <div
           style={{
@@ -139,6 +139,7 @@ const Browse = () => {
                 outline: "1px solid blue",
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "space-between",
                 textDecoration: "none",
                 backgroundColor: "white",
               }}
