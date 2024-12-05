@@ -23,7 +23,9 @@ const Navbar = () => {
     <nav style={{
       display: "flex",
       justifyContent: "space-between",
-      outline: "1px solid red",
+      // outline: "1px solid red",
+      backgroundColor: "lightgray",
+      padding: "0.5rem",
     }}>
       <Link to="/"
         style={{
@@ -55,6 +57,8 @@ const Navbar = () => {
                 width: "100%",
                 height: "100%",
               }}
+                // no style change when pressed
+              onMouseDown={(e) => e.preventDefault()}
             >
               {category.name}
             </button>
@@ -64,9 +68,10 @@ const Navbar = () => {
                   display: "flex",
                   flexDirection: "column",
                   position: "absolute", // this will make the dropdown appear on top of the other elements
-                  outline: "1px solid red",
-                  backgroundColor: "white",
+                  // outline: "1px solid red",
+                  backgroundColor: "lightgray",
                   width: "10rem",
+                  padding: "0.5rem",
                 }}>
                 {category.subcategories.map((subcategory) => (
                   <Link
