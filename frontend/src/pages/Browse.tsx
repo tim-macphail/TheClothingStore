@@ -43,17 +43,26 @@ const Browse = () => {
         >
           {/* Filters for price, style, size, and color */}
           <div>
-            <p>Filters</p>
+            <h2>Filters</h2>
             <ul style={{ listStyleType: "none", padding: 0 }}>
               {/* Price Filter */}
               <li>
                 <label htmlFor="price-range">
                   <p>Price</p>
                 </label>
-                Min
-                <input type="range" id="price-range" name="price" />
-                Max
-                <input type="range" id="price-range" name="price" />
+                {/* two number inputs */}
+                <input
+                  type="number"
+                  name="min"
+                  id="price-range"
+                  placeholder="Min"
+                />
+                <input
+                  type="number"
+                  name="max"
+                  id="price-range"
+                  placeholder="Max"
+                />
               </li>
 
               {/* Style Filter */}
