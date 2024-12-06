@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import shoppingCart from "../assets/shopping-cart.svg";
 
 const Cart = () => {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -93,14 +94,14 @@ const Cart = () => {
             </form>
           </div>
         ) : (
-          <span
+          <img
+            src={shoppingCart}
+            alt="Shopping cart"
             style={{
-              fontSize: "calc(40vw)", // Dynamically fill the container
-              lineHeight: "1", // Prevent extra spacing
+              width: "70%",
+              height: "70%",
             }}
-          >
-            🛒
-          </span>
+          />
         )}
       </div>
       <div

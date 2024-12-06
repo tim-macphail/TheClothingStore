@@ -43,9 +43,9 @@ const Item = () => {
                 gap: "20px",
             }}>
                 <div>
-                    <img 
-                        src={product.image_url || shirt} 
-                        alt={product.name} 
+                    <img
+                        src={product.image_url || shirt}
+                        alt={product.name}
                         style={{
                             width: "100%",
                             maxHeight: "500px",
@@ -61,7 +61,7 @@ const Item = () => {
                     <p>Category: {product.category}</p>
                     {product.description && <p>Description: {product.description}</p>}
                     <p>Stock: {product.stock_quantity} available</p>
-                    <button 
+                    <button
                         style={{
                             padding: "10px 20px",
                             marginTop: "20px",
