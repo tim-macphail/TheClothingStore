@@ -18,21 +18,10 @@ const Browse = () => {
         padding: "0.5rem",
       }}
     >
-      <h1
-        style={
-          {
-            // outline: "1px solid blue",
-          }
-        }
-      >
+      <h1>
         {decodeURIComponent(window.location.pathname.slice(1)).toUpperCase().replace("/", " > ")}
       </h1>
-      <div
-        style={{
-          display: "flex",
-          // outline: "1px solid green",
-        }}
-      >
+      <div style={{ display: "flex", }}>
         <div
           style={{
             width: "20%",

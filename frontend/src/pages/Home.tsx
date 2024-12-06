@@ -26,7 +26,7 @@ const Home = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             ></textarea>
-            <Link to={`/search/${encodeURIComponent(searchQuery)}`}
+            <Link to={`/search?query=${encodeURIComponent(searchQuery)}`}
                 style={{
                     height: "100%",
                 }}
