@@ -155,15 +155,19 @@ const Browse = () => {
           </div>
           <button
             onClick={() => {
-              console.log("Apply filters");
-              console.log("Min price:", minPrice);
-              console.log("Max price:", maxPrice);
-              console.log("Style:", style);
-              console.log("Size:", size);
-              console.log("Colors:", colors);
-            }
-            }
-          >Apply</button>
+              const sp = new URLSearchParams({
+                minPrice,
+                maxPrice,
+                style,
+                size,
+                colors: colors.join(","),
+              });
+
+              window.location.search = sp.toString();
+            }}
+          >
+            Apply
+          </button>
           <button
             onClick={() => {
               setMinPrice("");
