@@ -25,7 +25,7 @@ const Browse = () => {
           }
         }
       >
-        {window.location.pathname.slice(1).toUpperCase().replace("/", " > ")}
+        {decodeURIComponent(window.location.pathname.slice(1)).toUpperCase().replace("/", " > ")}
       </h1>
       <div
         style={{
