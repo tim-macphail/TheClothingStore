@@ -1,7 +1,7 @@
 // src/pages/Item.tsx
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { api, Product } from '../services/api';
+import { getProduct, Product } from '../services/api';
 import shirt from "../assets/shirtemoji.png";
 
 const Item = () => {
@@ -14,7 +14,7 @@ const Item = () => {
         const loadProduct = async () => {
             try {
                 if (!id) return;
-                const data = await api.getProduct(parseInt(id));
+                const data = await getProduct(parseInt(id));
                 setProduct(data);
             } catch (err) {
                 setError('Failed to load product');
@@ -72,7 +72,6 @@ const Item = () => {
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            // TODO: Implement add to cart functionality
                             alert('Add to cart functionality coming soon!');
                         }}
                     >
