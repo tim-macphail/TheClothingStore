@@ -4,6 +4,7 @@ import shirt from "../assets/shirtemoji.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { useEffect } from "react";
 
 const Browse = () => {
   const { products, loading, error } = useProducts();
@@ -13,6 +14,15 @@ const Browse = () => {
   const [style, setStyle] = useState("");
   const [size, setSize] = useState("");
   const [colors, setColors] = useState<string[]>([]);
+
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    setMinPrice(sp.get("minPrice") || "");
+    setMaxPrice(sp.get("maxPrice") || "");
+    setStyle(sp.get("style") || "");
+    setSize(sp.get("size") || "");
+    setColors((sp.get("colors") || "").split(","));
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
