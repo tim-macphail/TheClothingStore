@@ -56,7 +56,7 @@ const Browse = () => {
 
       return true;
     });
-  }, [products, minPrice, maxPrice, style, size, colors]);
+  }, [products, minPrice, maxPrice, style, size, colors, query]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
