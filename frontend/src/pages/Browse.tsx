@@ -1,14 +1,12 @@
 // src/pages/Browse.tsx
 import { useProducts } from "../hooks/useProducts";
 import shirt from "../assets/shirtemoji.png";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
-import { useEffect } from "react";
 
 const Browse = () => {
   const { products, loading, error } = useProducts();
-
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [style, setStyle] = useState("");
@@ -21,11 +19,64 @@ const Browse = () => {
     setMaxPrice(sp.get("maxPrice") || "");
     setStyle(sp.get("style") || "");
     setSize(sp.get("size") || "");
-    setColors((sp.get("colors") || "").split(","));
+    setColors((sp.get("colors") || "").split(",").filter(Boolean));
   }, []);
+
+  const filteredProducts = useMemo(() => {
+    if (!products) return [];
+    
+    return products.filter(product => {
+        // Price filter
+        if (minPrice || maxPrice) {
+            const price = product.price;
+            const minPriceNum = minPrice ? parseFloat(minPrice) : 0;
+            const maxPriceNum = maxPrice ? parseFloat(maxPrice) : Infinity;
+            if (price < minPriceNum || price > maxPriceNum) return false;
+        }
+
+        // Style filter (casual/formal)
+        if (style && style !== "") {
+            if (product.style?.toLowerCase() !== style.toLowerCase()) return false;
+        }
+
+        // Size filter (small/medium/large)
+        if (size && size !== "") {
+            if (product.size?.toLowerCase() !== size.toLowerCase()) return false;
+        }
+
+        // Color filter (red/blue/green)
+        if (colors.length > 0) {
+            if (!product.color || !colors.includes(product.color.toLowerCase())) return false;
+        }
+
+        return true;
+    });
+  }, [products, minPrice, maxPrice, style, size, colors]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+
+  const resetFilters = () => {
+    setMinPrice("");
+    setMaxPrice("");
+    setStyle("");
+    setSize("");
+    setColors([]);
+    window.history.pushState({}, '', window.location.pathname);
+  };
+
+  const applyFilters = () => {
+    const sp = new URLSearchParams({
+      ...(minPrice && { minPrice }),
+      ...(maxPrice && { maxPrice }),
+      ...(style && { style }),
+      ...(size && { size }),
+      ...(colors.length > 0 && { colors: colors.join(",") }),
+    });
+
+    const newUrl = `${window.location.pathname}?${sp.toString()}`;
+    window.history.pushState({}, '', newUrl);
+  };
 
   return (
     <div
@@ -36,9 +87,11 @@ const Browse = () => {
       }}
     >
       <h1>
-        {decodeURIComponent(window.location.pathname.slice(1)).toUpperCase().replace("/", " > ")}
+        {decodeURIComponent(window.location.pathname.slice(1))
+          .toUpperCase()
+          .replace("/", " > ")}
       </h1>
-      <div style={{ display: "flex", }}>
+      <div style={{ display: "flex" }}>
         <div
           style={{
             width: "20%",
@@ -47,7 +100,6 @@ const Browse = () => {
             padding: "0.5rem",
           }}
         >
-          {/* Filters for price, style, size, and color */}
           <div>
             <h2>Filters</h2>
             <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -56,176 +108,164 @@ const Browse = () => {
                 <label htmlFor="price-range">
                   <p>Price</p>
                 </label>
-                {/* two number inputs */}
                 <input
                   type="number"
                   name="min"
-                  id="price-range"
                   placeholder="Min"
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
+                  style={{ marginRight: "5px", width: "70px" }}
                 />
                 <input
                   type="number"
                   name="max"
-                  id="price-range"
                   placeholder="Max"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
+                  style={{ width: "70px" }}
                 />
               </li>
 
               {/* Style Filter */}
               <li>
                 <p>Style</p>
-                <div>
-                  <label>
-                    <input type="radio" name="style" value="casual"
-                      onChange={(e) => setStyle(e.target.value)}
-                      checked={style === "casual"}
-                    />
-                    Casual
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="radio" name="style" value="formal"
-                      onChange={(e) => setStyle(e.target.value)}
-                      checked={style === "formal"}
-                    />
-                    Formal
-                  </label>
-                </div>
+                {['casual', 'formal'].map((styleOption) => (
+                  <div key={styleOption}>
+                    <label>
+                      <input
+                        type="radio"
+                        name="style"
+                        value={styleOption}
+                        onChange={(e) => setStyle(e.target.value)}
+                        checked={style === styleOption}
+                      />
+                      {styleOption.charAt(0).toUpperCase() + styleOption.slice(1)}
+                    </label>
+                  </div>
+                ))}
               </li>
 
               {/* Size Filter */}
               <li>
                 <p>Size</p>
-                <div>
-                  <label>
-                    <input type="radio" name="size" value="small" checked={size === "small"} onChange={(e) => setSize(e.target.value)} />
-                    Small
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="radio" name="size" value="medium" checked={size === "medium"} onChange={(e) => setSize(e.target.value)} />
-                    Medium
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="radio" name="size" value="large" checked={size === "large"} onChange={(e) => setSize(e.target.value)} />
-                    Large
-                  </label>
-                </div>
+                {['small', 'medium', 'large'].map((sizeOption) => (
+                  <div key={sizeOption}>
+                    <label>
+                      <input
+                        type="radio"
+                        name="size"
+                        value={sizeOption}
+                        onChange={(e) => setSize(e.target.value)}
+                        checked={size === sizeOption}
+                      />
+                      {sizeOption.charAt(0).toUpperCase() + sizeOption.slice(1)}
+                    </label>
+                  </div>
+                ))}
               </li>
 
               {/* Color Filter */}
               <li>
                 <p>Color</p>
-                <div>
-                  <label>
-                    <input type="checkbox" name="color" value="red" checked={colors.includes("red")} onChange={(e) => {
-                      if (e.target.checked) {
-                        setColors([...colors, e.target.value]);
-                      } else {
-                        setColors(colors.filter((color) => color !== e.target.value));
-                      }
-                    }} />
-                    Red
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="checkbox" name="color" value="blue" checked={colors.includes("blue")} onChange={(e) => {
-                      if (e.target.checked) {
-                        setColors([...colors, e.target.value]);
-                      } else {
-                        setColors(colors.filter((color) => color !== e.target.value));
-                      }
-                    }} />
-                    Blue
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    <input type="checkbox" name="color" value="green" checked={colors.includes("green")} onChange={(e) => {
-                      if (e.target.checked) {
-                        setColors([...colors, e.target.value]);
-                      } else {
-                        setColors(colors.filter((color) => color !== e.target.value));
-                      }
-                    }} />
-                    Green
-                  </label>
-                </div>
+                {['red', 'blue', 'green'].map((color) => (
+                  <div key={color}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="color"
+                        value={color}
+                        checked={colors.includes(color)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setColors([...colors, e.target.value]);
+                          } else {
+                            setColors(colors.filter((c) => c !== e.target.value));
+                          }
+                        }}
+                      />
+                      {color.charAt(0).toUpperCase() + color.slice(1)}
+                    </label>
+                  </div>
+                ))}
               </li>
             </ul>
           </div>
           <button
-            onClick={() => {
-              const sp = new URLSearchParams({
-                minPrice,
-                maxPrice,
-                style,
-                size,
-                colors: colors.join(","),
-              });
-
-              window.location.search = sp.toString();
+            onClick={applyFilters}
+            style={{
+              marginBottom: "10px",
+              padding: "8px",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
             }}
           >
             Apply
           </button>
           <button
-            onClick={() => {
-              setMinPrice("");
-              setMaxPrice("");
-              setStyle("");
-              setSize("");
-              setColors([]);
+            onClick={resetFilters}
+            style={{
+              padding: "8px",
+              backgroundColor: "#6c757d",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
             }}
-          >Reset</button>
+          >
+            Reset
+          </button>
         </div>
+
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 2fr)",
-            outline: "1px solid pink",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1rem",
             width: "80%",
+            padding: "0.5rem",
           }}
         >
-          {products.map((product) => (
-            <Link
-              key={product.id}
-              to={`/item/${product.id}`}
-              style={{
-                outline: "1px solid blue",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                textDecoration: "none",
-                backgroundColor: "white",
-              }}
-              className="hover-enlarge"
-            >
-              <img
-                src={product.image_url || shirt}
-                alt={product.name}
-                width={"100%"}
-              />
-              <div
+          {filteredProducts.length === 0 ? (
+            <div style={{ gridColumn: "span 3", textAlign: "center", padding: "2rem" }}>
+              No products match your filters
+            </div>
+          ) : (
+            filteredProducts.map((product) => (
+              <Link
+                key={product.id}
+                to={`/item/${product.id}`}
                 style={{
+                  outline: "1px solid blue",
                   display: "flex",
-                  justifyContent: "space-evenly",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  textDecoration: "none",
+                  backgroundColor: "white",
+                  padding: "1rem",
                 }}
+                className="hover-enlarge"
               >
-                <p>${product.price}</p>
-                <p>{product.name}</p>
-              </div>
-            </Link>
-          ))}
+                <img
+                  src={product.image_url || shirt}
+                  alt={product.name}
+                  style={{ width: "100%", objectFit: "cover" }}
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  <p>${product.price}</p>
+                  <p>{product.name}</p>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>
