@@ -195,7 +195,7 @@ const Browse = () => {
               </li>
             </ul>
           </div>
-          <button
+          {/* <button
             onClick={applyFilters}
             style={{
               marginBottom: "10px",
@@ -208,7 +208,7 @@ const Browse = () => {
             }}
           >
             Apply
-          </button>
+          </button> */}
           <button
             onClick={resetFilters}
             style={{
