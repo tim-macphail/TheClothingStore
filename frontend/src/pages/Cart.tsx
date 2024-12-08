@@ -7,6 +7,7 @@ import shirt from "../assets/shirtemoji.png";
 const Cart = () => {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const { items, removeFromCart, updateQuantity, getCartTotal } = useCart();
+  const [sameAsBilling, setSameAsBilling] = useState(false);
 
   const BillingForm = () => (
     <div>
@@ -32,30 +33,50 @@ const Cart = () => {
           ZIP:
           <input type="text" name="zip" />
         </label>
+        {/* credit card payment details */}
+        <h2>Credit Card Info</h2>
+        <label>
+          Card Number:
+          <input type="text" name="cardNumber" />
+        </label>
+        <label>
+          Expiration Date:
+          <input type="text" name="expirationDate" />
+        </label>
+        <label>
+          CVV:
+          <input type="text" name="cvv" />
+        </label>
       </form>
 
       <h2>Shipping Info</h2>
       <form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <label>
-          Name:
-          <input type="text" name="name" />
+        {/* checkbox for same as billing info */}
+        <label htmlFor="">Same as billing info
+          <input type="checkbox" name="sameAsBilling" checked={sameAsBilling} onChange={() => setSameAsBilling(!sameAsBilling)} />
         </label>
-        <label>
-          Address:
-          <input type="text" name="address" />
-        </label>
-        <label>
-          City:
-          <input type="text" name="city" />
-        </label>
-        <label>
-          State:
-          <input type="text" name="state" />
-        </label>
-        <label>
-          ZIP:
-          <input type="text" name="zip" />
-        </label>
+        {!sameAsBilling && <>
+          <label>
+            Name:
+            <input type="text" name="name" />
+          </label>
+          <label>
+            Address:
+            <input type="text" name="address" />
+          </label>
+          <label>
+            City:
+            <input type="text" name="city" />
+          </label>
+          <label>
+            State:
+            <input type="text" name="state" />
+          </label>
+          <label>
+            ZIP:
+            <input type="text" name="zip" />
+          </label>
+        </>}
       </form>
     </div>
   );
@@ -109,7 +130,7 @@ const Cart = () => {
           ) : (
             <div style={{ marginBottom: '2rem' }}>
               {items.map((item) => (
-                <div 
+                <div
                   key={item.id}
                   style={{
                     display: 'flex',
@@ -119,9 +140,9 @@ const Cart = () => {
                     gap: '1rem'
                   }}
                 >
-                  <img 
-                    src={item.image_url || shirt} 
-                    alt={item.name} 
+                  <img
+                    src={item.image_url || shirt}
+                    alt={item.name}
                     style={{ width: '50px', height: '50px', objectFit: 'cover' }}
                   />
                   <div style={{ flex: 1 }}>
@@ -159,7 +180,7 @@ const Cart = () => {
             </div>
           )}
         </div>
-        
+
         <div
           style={{
             display: "flex",
