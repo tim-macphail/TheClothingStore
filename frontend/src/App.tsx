@@ -5,6 +5,7 @@ import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
 import Browse from './pages/Browse';
 import Item from './pages/Item';
+import { CartProvider } from './context/CartContext';
 
 const AppContent = () => {
     const location = useLocation();
@@ -26,7 +27,9 @@ const AppContent = () => {
 function App() {
     return (
         <Router>
-            <AppContent />
+            <CartProvider>
+                <AppContent />
+            </CartProvider>
         </Router>
     );
 }

@@ -1,4 +1,3 @@
-// src/pages/Browse.tsx
 import { useProducts } from "../hooks/useProducts";
 import shirt from "../assets/shirtemoji.png";
 import { useState, useEffect, useMemo } from "react";
