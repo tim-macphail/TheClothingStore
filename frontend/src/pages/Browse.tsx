@@ -11,6 +11,7 @@ const Browse = () => {
   const [style, setStyle] = useState("");
   const [size, setSize] = useState("");
   const [colors, setColors] = useState<string[]>([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -19,36 +20,41 @@ const Browse = () => {
     setStyle(sp.get("style") || "");
     setSize(sp.get("size") || "");
     setColors((sp.get("colors") || "").split(",").filter(Boolean));
+    setQuery(sp.get("query") || "");
+
   }, []);
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
-    
+
     return products.filter(product => {
-        // Price filter
-        if (minPrice || maxPrice) {
-            const price = product.price;
-            const minPriceNum = minPrice ? parseFloat(minPrice) : 0;
-            const maxPriceNum = maxPrice ? parseFloat(maxPrice) : Infinity;
-            if (price < minPriceNum || price > maxPriceNum) return false;
-        }
+      // Search query filter
+      if (query && !product.name.toLowerCase().includes(query.toLowerCase())) return false;
 
-        // Style filter (casual/formal)
-        if (style && style !== "") {
-            if (product.style?.toLowerCase() !== style.toLowerCase()) return false;
-        }
+      // Price filter
+      if (minPrice || maxPrice) {
+        const price = product.price;
+        const minPriceNum = minPrice ? parseFloat(minPrice) : 0;
+        const maxPriceNum = maxPrice ? parseFloat(maxPrice) : Infinity;
+        if (price < minPriceNum || price > maxPriceNum) return false;
+      }
 
-        // Size filter (small/medium/large)
-        if (size && size !== "") {
-            if (product.size?.toLowerCase() !== size.toLowerCase()) return false;
-        }
+      // Style filter (casual/formal)
+      if (style && style !== "") {
+        if (product.style?.toLowerCase() !== style.toLowerCase()) return false;
+      }
 
-        // Color filter (red/blue/green)
-        if (colors.length > 0) {
-            if (!product.color || !colors.includes(product.color.toLowerCase())) return false;
-        }
+      // Size filter (small/medium/large)
+      if (size && size !== "") {
+        if (product.size?.toLowerCase() !== size.toLowerCase()) return false;
+      }
 
-        return true;
+      // Color filter (red/blue/green)
+      if (colors.length > 0) {
+        if (!product.color || !colors.includes(product.color.toLowerCase())) return false;
+      }
+
+      return true;
     });
   }, [products, minPrice, maxPrice, style, size, colors]);
 
