@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+
 
 const categories = [
   {
@@ -18,6 +20,8 @@ const categories = [
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+
+  const { items } = useCart();
 
   return (
     <nav style={{
@@ -57,7 +61,7 @@ const Navbar = () => {
                 width: "100%",
                 height: "100%",
               }}
-                // no style change when pressed
+              // no style change when pressed
               onMouseDown={(e) => e.preventDefault()}
             >
               {category.name}
@@ -96,7 +100,7 @@ const Navbar = () => {
           fontSize: "1.5rem",
         }}
       >
-        🛒
+        🛒 {items.length}
       </Link>
     </nav>
   );
