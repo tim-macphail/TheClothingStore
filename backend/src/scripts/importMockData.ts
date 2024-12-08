@@ -5,7 +5,7 @@ const mockItems = [
     {
         name: "T-Shirt",
         description: "Comfortable Casual T-Shirt",
-        price: 100,
+        price: 29.99,
         stock_quantity: 50,
         category: "shirts",
         size: "Medium",
@@ -15,7 +15,7 @@ const mockItems = [
     {
         name: "Pants",
         description: "Stylish Casual Pants",
-        price: 200,
+        price: 59.99,
         stock_quantity: 50,
         category: "pants",
         size: "Medium",
@@ -25,7 +25,7 @@ const mockItems = [
     {
         name: "Running Shoes",
         description: "Comfortable Running Shoes",
-        price: 300,
+        price: 119.99,
         stock_quantity: 50,
         category: "running",
         size: "Medium",
@@ -34,8 +34,8 @@ const mockItems = [
     },
     {
         name: "Skiing Helmet",
-        description: "Functional Helmet",
-        price: 400,
+        description: "Functional Helmet, Ideal for Skiing",
+        price: 300,
         stock_quantity: 50,
         category: "skiing",
         size: "Medium",
@@ -44,8 +44,8 @@ const mockItems = [
     },
     {
         name: "Jersey",
-        description: "Trendy Jersey",
-        price: 500,
+        description: "Trendy Jersey for Basketball",
+        price: 100,
         stock_quantity: 50,
         category: "basketball",
         size: "Medium",
@@ -55,7 +55,7 @@ const mockItems = [
     {
         name: "Shorts",
         description: "Athletic Shorts",
-        price: 600,
+        price: 25.99,
         stock_quantity: 50,
         category: "basketball",
         size: "Medium",
@@ -64,8 +64,8 @@ const mockItems = [
     },
     {
         name: "Basketball Shirt",
-        description: "Comfortable T-Shirt",
-        price: 700,
+        description: "Comfortable T-Shirt, Ideal for Basketball",
+        price: 72.99,
         stock_quantity: 50,
         category: "basketball",
         size: "Medium",
@@ -75,7 +75,7 @@ const mockItems = [
     {
         name: "Long Sleeve Shirt",
         description: "Comfortable Long Sleeve Shirt",
-        price: 800,
+        price: 60,
         stock_quantity: 50,
         category: "shirts",
         size: "Large",
@@ -85,7 +85,7 @@ const mockItems = [
     {
         name: "Sweatpants",
         description: "Relaxed Fit Sweatpants",
-        price: 900,
+        price: 44,
         stock_quantity: 50,
         category: "pants",
         size: "Medium",
@@ -95,7 +95,7 @@ const mockItems = [
     {
         name: "Jeans",
         description: "Stylish Jeans",
-        price: 1000,
+        price: 80,
         stock_quantity: 50,
         category: "pants",
         size: "Medium",
@@ -105,7 +105,7 @@ const mockItems = [
     {
         name: "Striped Sweater",
         description: "Stylish Sweater",
-        price: 1100,
+        price: 90,
         stock_quantity: 50,
         category: "sweaters",
         size: "Medium",
@@ -115,7 +115,7 @@ const mockItems = [
     {
         name: "Dark Jeans",
         description: "Stylish Jeans",
-        price: 1200,
+        price: 75,
         stock_quantity: 50,
         category: "pants",
         size: "Medium",
@@ -125,7 +125,7 @@ const mockItems = [
     {
         name: "Running Jacket",
         description: "Weatherproof Jacket",
-        price: 1300,
+        price: 200,
         stock_quantity: 50,
         category: "running",
         size: "Medium",
@@ -135,7 +135,7 @@ const mockItems = [
     {
         name: "Polo Shirt",
         description: "Trendy Polo Shirt",
-        price: 1400,
+        price: 130.99,
         stock_quantity: 50,
         category: "shirts",
         size: "Small",
@@ -145,7 +145,7 @@ const mockItems = [
     {
         name: "Dress Shirt",
         description: "Elegant Dress Shirt",
-        price: 1500,
+        price: 110,
         stock_quantity: 50,
         category: "formal-shirts",
         size: "Medium",
@@ -155,7 +155,7 @@ const mockItems = [
     {
         name: "Dress Shirt",
         description: "Elegant Dress Shirt",
-        price: 1600,
+        price: 140,
         stock_quantity: 50,
         category: "formal-shirts",
         size: "Medium",
@@ -165,7 +165,7 @@ const mockItems = [
     {
         name: "Knit Sweater",
         description: "Warm and Elegant Sweater",
-        price: 1700,
+        price: 90,
         stock_quantity: 50,
         category: "sweaters",
         size: "Medium",

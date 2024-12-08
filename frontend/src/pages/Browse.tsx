@@ -263,6 +263,7 @@ const Browse = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     marginTop: "0.5rem",
+                    fontSize: "1.5rem",
                   }}
                 >
                   <p>${product.price}</p>
