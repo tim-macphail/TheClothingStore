@@ -207,6 +207,7 @@ const Cart = () => {
             onClick={() => {
               if (isCheckingOut) {
                 alert("Order confirmed!");
+                window.location.href = '/';
               } else {
                 setIsCheckingOut(true);
               }
