@@ -12,6 +12,7 @@ const Browse = () => {
   const [size, setSize] = useState("");
   const [colors, setColors] = useState<string[]>([]);
   const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -24,12 +25,25 @@ const Browse = () => {
 
   }, []);
 
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    if (pathname === "/" || pathname === "/search") {
+      setCategory("");
+    } else {
+      setCategory(pathname.split("/")[2]);
+    }
+    console.log("pathname", pathname);
+  }, [window.location.pathname]);
+
   const filteredProducts = useMemo(() => {
     if (!products) return [];
 
     return products.filter(product => {
       // Search query filter
       if (query && !product.name.toLowerCase().includes(query.toLowerCase())) return false;
+
+      // Category filter
+      if (category && category !== product.category) return false;
 
       // Price filter
       if (minPrice || maxPrice) {
@@ -56,7 +70,7 @@ const Browse = () => {
 
       return true;
     });
-  }, [products, minPrice, maxPrice, style, size, colors, query]);
+  }, [products, minPrice, maxPrice, style, size, colors, query, category]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
